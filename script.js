@@ -31,6 +31,7 @@ const log = document.getElementById("log");
 function typeNext() {
   if (i < logs.length) {
     log.innerHTML += logs[i] + "\n";
+    log.scrollTop = log.scrollHeight;
     if (logs[i] === "Ignition sequence start 🚀") {
       document.getElementById("rocket").classList.add("lift");
     }
