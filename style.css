@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  background: #000;
+  color: #0f0;
+  font-family: 'Courier New', monospace;
+  overflow: hidden;
+}
+
+.console {
+  padding: 30px;
+  font-size: 1.2rem;
+  white-space: pre-wrap;
+}
+
+#log {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
