@@ -22,7 +22,7 @@ const logs = [
   "You are the purpose.",
   "Velocity: Love.",
   "Status: Never shutting down.",
-  "— Mission Control: NiteshCore",
+  "— Mission Control: NiteshCore"
 ];
 
 let i = 0;
@@ -31,8 +31,13 @@ const log = document.getElementById("log");
 function typeNext() {
   if (i < logs.length) {
     log.innerHTML += logs[i] + "\n";
+    if (logs[i] === "Ignition sequence start 🚀") {
+      document.getElementById("rocket").classList.add("lift");
+    }
     i++;
     setTimeout(typeNext, 1500);
+  } else {
+    document.body.classList.add("fadeout");
   }
 }
 
