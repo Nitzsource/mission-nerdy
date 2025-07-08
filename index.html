@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Mission: Nerdy Pyaar</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <audio autoplay loop>
-  <source src="launch.mp3" type="audio/mpeg">
-</audio>
+  <!-- Audio playback -->
+  <audio id="bg-audio" loop preload="auto">
+    <source src="launch.mp3" type="audio/mpeg" />
+  </audio>
 
-
+  <!-- Rocket icon -->
   <div class="rocket" id="rocket">🚀</div>
 
+  <!-- Console -->
   <div class="console">
     <div id="log"></div>
+    <div class="note">💡 Tap anywhere if sound doesn’t start.</div>
   </div>
 
   <script>
@@ -52,17 +54,31 @@
     function typeNext() {
       if (i < logs.length) {
         log.innerHTML += logs[i] + "\n";
+        log.scrollTop = log.scrollHeight; // auto-scroll
         if (logs[i] === "Ignition sequence start 🚀") {
           document.getElementById("rocket").classList.add("lift");
         }
         i++;
         setTimeout(typeNext, 1500);
       } else {
-        document.body.classList.add("fadeout");
+        // Delay fadeout so she sees final message
+        setTimeout(() => {
+          document.body.classList.add("fadeout");
+        }, 3000);
       }
     }
 
     window.onload = typeNext;
+
+    // Click to enable audio on mobile
+    window.addEventListener("click", () => {
+      const audio = document.getElementById("bg-audio");
+      if (audio && audio.paused) {
+        audio.play().catch(err => {
+          console.warn("Autoplay blocked:", err.message);
+        });
+      }
+    }, { once: true });
   </script>
 </body>
 </html>
